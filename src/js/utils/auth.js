@@ -1,4 +1,4 @@
-const baseUrl = "http://pokedex-api-production-8e5a.up.railway.app";
+const baseUrl = "https://pokedex-api-production-8e5a.up.railway.app";
 
 
 const auth = {

@@ -2,7 +2,7 @@ import pokemons from "../pages/pokemons.js";
 import types from "../pages/types.js";
 import searchContainer from "./searchContainer.js";
 import modal from "./modal.js";
-import teams from "../pages/teams.js";
+
 
 
 const navigations = {
