@@ -34,7 +34,7 @@ const auth = {
 
   updateUi() {
     if (this.isAuthenticated()) { 
-      pokemons.init();     
+          
       teams.init();      
       document.getElementById("search-container").classList.remove("hidden");
       document.getElementById("nav-item-login").classList.add("hidden");
