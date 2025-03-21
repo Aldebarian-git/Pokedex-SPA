@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Meta -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Title -->
+  <title>Pokedex</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="./src/pokeball.svg" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Custom CSS-->
+  <link rel="stylesheet" href="./src/css/style.css" />
+
+
+  <!-- Custom JS-->
+  <script type="module" src="./src/main.js"></script>
+</head>
+
+<body>  
+
+  <main id="app" class="sm:p-0 md:p-6 relative w-full h-full">
+
+    <div id="search-container" class="flex flex-col ">
+      <h1 class="text-6xl font-bold text-center font-pokemon text-red-600 tracking-widest h-24 my-2 relative">
+        Pokedex
+      </h1>
+      <div
+        class="flex flex-row items-center justify-center gap-4 p-4 rounded-lg shadow-md bg-gradient-to-br from-red-500 to-red-700 max-w-[780px] mx-auto mb-10 h-20 border-2 border-black relative">
+
+        <div
+          class="bg-white w-11 h-11 rounded-full border-2 border-black flex items-center justify-center cursor-pointer hover:scale-102 transition-all duration-300  flex-shrink-0"
+          id="nav-item-home" data-page="home">
+          <i class="fas fa-home text-2xl text-red-500 hover:text-green-500 transition-all duration-300"></i>
+        </div>
+
+        <!-- Contenu du search-container -->
+        <div class="flex flex-row items-center justify-center gap-4 hidden sm:flex">
+
+          <!-- Filtre par nom -->
+          <input class="w-[200px] px-4 py-2 border-2 border-black rounded-lg shadow-sm bg-white sm:block hidden" type="search"
+            id="search-name" placeholder="Nom du Pokémon..." />
+          <img src="/img/pokeball.png" alt="une Pokeball" class="w-30 h-30 hidden sm:block">
+          <!-- Filtre par type -->
+           <div>
+
+             <select
+             class="w-[200px] px-4 py-2 border-2 border-black rounded-lg shadow-sm bg-white cursor-pointer appearance-none sm:block hidden"
+             id="search-type">
+             <!-- inserer les types ici avec le template #searchType-template -->
+             <option value="">Trier par type</option>
+            </select>
+          </div>
+
+          <div id="podium-container" class="absolute top-[-100px] right-[40px] flex flex-row items-end justify-center hidden sm:flex">
+            <div class="colonne-2 text-center text-white flex flex-col-reverse items-end justify-center">
+              <div class="podium-design-2 w-14 h-10 bg-amber-500 border-t-2 border-l-2 border-black">
+                <span class="podium-design-2-span font-pokemon">2</span>
+              </div>
+            </div>
+            <div class="colonne-1 text-center text-white flex flex-col-reverse items-end justify-center">
+              <div class="podium-design-1 w-14 h-12 bg-amber-500 border-t-2 border-l-2 border-r-2 border-black">
+                <span class="podium-design-1-span font-pokemon">1</span>
+              </div>
+            </div>
+            <div class="colonne-3 text-center text-white flex flex-col-reverse items-end justify-center">
+              <div class="podium-design-3 w-14 h-8 bg-amber-500 border-t-2 border-r-2 border-black">
+                <span class="podium-design-3-span font-pokemon">3</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a class="bg-white w-11 h-11 rounded-full border-2 border-black flex items-center justify-center cursor-pointer hover:scale-102 transition-all duration-300 flex-shrink-0 hidden p-1.5"
+          id="nav-item-team" data-page="teams">
+          <i class="fas fa-users text-2xl text-red-500 hover:text-green-500" data-page="teams"></i>
+        </a>
+
+
+        <div
+          class="bg-white w-11 h-11 rounded-full border-2 border-black flex items-center justify-center cursor-pointer hover:scale-102 transition-all duration-300  flex-shrink-0">
+          <!-- Bouton de connexion -->
+          <button id="nav-item-login" data-page="login"
+            class="flex justify-center items-center w-full h-full cursor-pointer hover:text-green-500">
+            <i class="fas fa-power-off text-2xl text-red-600 transition-all duration-300 hover:text-green-500"></i>
+          </button>
+          <!-- Bouton de déconnexion (caché au début) -->
+          <button id="nav-item-logout" data-page="logout"
+            class="hidden flex justify-center items-center w-full h-full cursor-pointer hover:text-red-600">
+            <i class="fas fa-power-off text-2xl text-green-500 transition-all duration-300 hover:text-red-600"></i>
+          </button>
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <div id="pokemon-list" class="flex flex-row flex-wrap gap-6 max-w-[1000px] mx-auto"></div>
+    <div id="type-list"
+      class="max-w-[500px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 justify-center items-center hidden">
+    </div>
+    <div id="team-list" class="sm:w-[370px] md:w-[708px] lg:w-[900px] mx-auto flex flex-col gap-4 justify-center items-end hidden ">
+      <button
+        class="btn-add-team p-2 rounded-lg bg-green-400 text-white hover:bg-green-600 transition-all duration-300 cursor-pointer mx-[5%]">Ajouter
+        une équipe</button>
+    </div>
+
+    <!-- Modal pour les détails du Pokémon -->
+    <div class="modal" id="pkm_detail">
+
+      <div class="modal-card max-w-[400px] w-full text-center bg-white rounded-lg p-4 shadow-lg">
+        <header class="modal-card-head flex items-center justify-between">
+          <h2 class="modal-card-title pkm_name text-2xl">Bulbizarre</h2>
+          <i
+            class="fa fa-window-close close cursor-pointer text-3xl text-red-400 hover:text-red-600 transition-all duration-300"></i>
+        </header>
+        <section class="modal-card-body flex flex-col items-center">
+          <div class="mr-4">
+            <img src="./src/assets/img/" class="pkm_img_modal h-40" />
+          </div>
+          <div class="pokemon-types-modal flex justify-center gap-2 m-3 w-full">
+            <!-- Les types seront ajoutés ici dynamiquement -->
+
+          </div>
+          <div class="modal-card-content pkm_stats_modal w-full p-6">
+            <h4 class="">Statistiques</h4>
+            <p class="modal_team_types"></p>
+            <div>
+              <div class="flex justify-start">
+                <div class="PV">PV:</div>
+                <div class="pokemon-hp ml-1"></div>
+              </div>
+              <progress class="progress is-danger progress-hp" value="50" max="250"></progress>
+            </div>
+            <div class="row">
+              <div class="flex justify-start">
+                <div class="">Attaque:</div>
+                <div class="pokemon-atk ml-1"></div>
+              </div>
+              <progress class="progress is-danger progress-atk" value="70" max="134"></progress>
+            </div>
+            <div class="row">
+              <div class="flex justify-start">
+                <div class="">Défense:</div>
+                <div class="pokemon-def ml-1"></div>
+              </div>
+              <progress class="progress is-danger progress-def" value="90" max="180"></progress>
+            </div>
+            <div class="row">
+              <div class="flex justify-start">
+                <div class="">Attaque Spé:</div>
+                <div class="pokemon-atk_spe ml-1"></div>
+              </div>
+              <progress class="progress is-danger progress-atk-spe" value="110" max="154"></progress>
+            </div>
+            <div class="row">
+              <div class="flex justify-start">
+                <div class="">Défense Spé:</div>
+                <div class="pokemon-def_spe ml-1"></div>
+              </div>
+              <progress class="progress is-danger progress-def-spe" value="130" max="125"></progress>
+            </div>
+            <div class="row">
+              <div class="flex justify-start">
+                <div class="">Vitesse:</div>
+                <div class="pokemon-speed ml-1"></div>
+              </div>
+              <progress class="progress is-danger progress-speed" value="150" max="140"></progress>
+            </div>
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <div class="add_team_container">
+            <!-- Inserer le template #add-pkm-team-template -->
+
+
+          </div>
+        </footer>
+      </div>
+
+    </div>
+
+    <!-- Modal pour ajouter une équipe -->
+    <div class="modal" id="add_pkm_team">
+
+      <div class="modal-card max-w-md w-full bg-white rounded-lg p-6 shadow-xl">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Ajouter une équipe</h2>
+        <form id="add-team-form" class="space-y-4">
+          <div>
+            <label for="create-team-name" class="block text-sm font-medium text-gray-700">Nom de l'équipe</label>
+            <input type="text" name="create-team-name" id="create-team-name"
+              class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder="Entrez le nom de l'équipe">
+          </div>
+          <div>
+            <label for="create-team-description" class="block text-sm font-medium text-gray-700">Description</label>
+            <input name="create-team-description" id="create-team-description" rows="3"
+              class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder="Ajoutez une brève description"></input>
+          </div>
+          <div class="flex justify-end space-x-3">
+            <button type="button"
+              class="button close cursor-pointer text-white bg-red-400 hover:bg-red-600 rounded-lg p-2 transition-all duration-300"
+              id="cancel-create-team">
+              Annuler
+            </button>
+            <button type="submit"
+              class="button btn_add_team p-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-all duration-300 cursor-pointer">
+              Enregistrer
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+    <!-- Modale de confirmation -->
+    <div id="confirm-modal"
+      class="modal fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
+
+      <div class="bg-white rounded-lg shadow-lg p-6 w-96">
+        <h2 class="text-xl font-semibold text-gray-900">Confirmer la suppression</h2>
+        <p class="text-gray-600 my-4">Êtes-vous sûr de vouloir supprimer cette équipe ? Cette action est irréversible.
+        </p>
+
+        <!-- Formulaire de confirmation -->
+        <form id="delete-form" method="POST">
+          <input type="hidden" name="team-id" id="team-id" value="">
+
+          <div class="flex justify-end space-x-3">
+            <button type="submit" id="confirm-delete"
+              class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition cursor-pointer">
+              Supprimer
+            </button>
+
+            <button type="button" id="cancel-delete"
+              class="close px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400 transition cursor-pointer">
+              Annuler
+            </button>
+
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Modal pour modifier une équipe -->
+    <div class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden" id="edit-team">
+
+      <div class="modal-card max-w-md w-full bg-white rounded-lg p-6 shadow-xl">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Modifier l'équipe</h2>
+        <form id="edit-team-form" class="space-y-4">
+          <div>
+            <label for="team-name" class="block text-sm font-medium text-gray-700">Nom de l'équipe</label>
+            <input type="text" name="team-name" id="team-name"
+              class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder="Entrez le nom de l'équipe">
+          </div>
+          <div>
+            <label for="team-description" class="block text-sm font-medium text-gray-700">Description</label>
+            <input name="team-description" id="team-description" rows="3"
+              class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder="Ajoutez une brève description"></input>
+          </div>
+          <div class="flex justify-end space-x-3">
+            <button type="button"
+              class="button close cursor-pointer text-white bg-red-400 hover:bg-red-600 rounded-lg p-2 transition-all duration-300"
+              id="cancel-edit">
+              Annuler
+            </button>
+            <button type="submit"
+              class="button btn_add_team p-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-all duration-300 cursor-pointer">
+              Enregistrer
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+    <!-- Modal pour le login -->
+    <div class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden" id="login-modal">
+      <div class="modal-card max-w-md w-full bg-white rounded-lg p-6 shadow-xl">
+        <h2 class="text-6xl font-bold text-center font-pokemon text-red-600 tracking-widest h-24">Pokedex</h2>
+        <p class="text-2xl font-semibold text-gray-900 mb-4">Connectez-vous à votre compte</p>
+        <form id="login-form" class="space-y-4">
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="text" name="email" id="email"
+              class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder="Entrez votre email">
+          </div>
+          <div>
+            <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+            <input type="password" name="password" id="password"
+              class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder="Entrez votre mot de passe">
+          </div>
+          <div class="flex justify-center space-x-3 flex-col items-center justify-items-center">
+            <div id="error-message" class="text-red-600 hidden m-2"></div>
+            <button type="submit"
+              class="button btn_add_team p-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-all duration-300 cursor-pointer">
+              Connexion
+            </button>
+          </div>
+          <div class="flex justify-center items-center space-x-3">
+            <p class="text-sm text-gray-700">Vous n'avez pas de compte ? </p>
+            <button id="register-button" type="button"
+              class="button close cursor-pointer text-white bg-red-400 hover:bg-red-600 rounded-lg p-2 transition-all duration-300">
+              Créez un compte
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal pour le register -->
+    <div class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden" id="register-modal">
+      <div class="modal-card max-w-md w-full bg-white rounded-lg p-6 shadow-xl">
+        <h2 class="text-6xl font-bold text-center font-pokemon text-red-600 tracking-widest h-24">Pokedex</h2>
+        <p class="text-2xl font-semibold text-gray-900 mb-4">Créez un compte</p>
+        <form id="register-form" class="space-y-4">
+          <div>
+            <label for="username-register" class="block text-sm font-medium text-gray-700">Nom d'utilisateur</label>
+            <input type="text" name="username-register" id="username-register"
+              class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder="Entrez votre nom d'utilisateur">
+          </div>
+          <div>
+            <label for="email-register" class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="text" name="email-register" id="email-register"
+              class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder="Entrez votre email">
+          </div>
+          <div>
+            <label for="password-register" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+            <input type="password" name="password-register" id="password-register"
+              class="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder="Entrez votre mot de passe">
+          </div>
+          <div class="flex justify-center space-x-3 flex-col items-center justify-items-center">
+            <div id="error-message-register" class="text-red-600 hidden m-2"></div>
+            <button type="submit"
+              class="button btn_add_team p-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-all duration-300 cursor-pointer">
+              Créer un compte
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </main>
+<!-- Template pour une carte -->
+<template id="pokemon-template">
+
+  <div
+    class="card border-6 border-amber-300 text-center max-w-xs rounded-lg shadow-lg hover:shadow-2xl  hover:scale-102 bg-gradient-to-b from-red-100 to-blue-200 transition-all duration-300 flex m-auto relative"
+    data-type="pokemon">
+    <button class="text-gray-500 hover:text-red-500 text-2xl transition absolute top-0 right-0 m-2 cursor-pointer like-btn z-50">
+      
+    </button>
+
+    <div class="block p-4 w-full">
+      <div class="card-image px-4">
+        <img class="pkm_img w-full h-60 object-contain rounded-md mx-auto" src="./src/assets/img/"
+          alt="Image du Pokémon" />
+      </div>
+      <div class="card-content">
+        <p slot="pokemon-number" class="pokemon-number text-sm font-medium text-gray-600">#NUMERO</p>
+        <p slot="pokemon-name" class="pokemon-name text-xl font-semibold text-gray-800">NOM_DU_POKEMON</p>
+        <div class="pokemon-types flex justify-center gap-2 mt-2">
+          <!-- Les types seront ajoutés ici dynamiquement -->
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- Template pour une équipe -->
+<template id="team-template">
+  <div class="team-card w-[90%] mx-auto bg-white rounded-lg shadow-lg overflow-hidden  bg-gradient-to-t from-blue-200 to-blue-100">
+    <div class=" bg-gradient-to-br p-4 from-red-500 to-red-800 text-white text-center flex justify-between items-center border-2 border-black rounded-t-lg">
+      <h2 class="sm:text-sm md:text-3xl lg:text-2xl truncate font-pokemon tracking-widest" slot="team-name">Nom_de_l'équipe</h2>
+      <div class="buttons-container flex flex-row gap-2">
+
+        <button
+          class="button-edit-team cursor-pointer text-white bg-white rounded-full p-2 transition-all duration-300 flex-shrink-0 h-10 w-10 flex justify-center items-center hover:scale-105 border-2 border-black"><i
+            class="fa fa-pencil text-amber-500"></i></button>        
+
+        <button
+            class="button-delete-team cursor-pointer text-white bg-white rounded-full p-2 transition-all duration-300 flex-shrink-0 h-10 w-10 flex justify-center items-center hover:scale-105 border-2 border-black"><i
+            class="fa fa-trash text-red-500"></i></button>
+      </div>
+    </div>
+    <div class="pt-4 border-x-2 border-black text-center">
+      <p slot="team-description" class="text-lg text-gray-800">Description de l'équipe</p>
+    </div>
+    <div slot="team-pokemons"
+      class="text-gray-700 text-lg grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 border-x-2 border-b-2 border-black rounded-b-lg">
+      <!-- Liste des pokémons -->
+    </div>
+
+  </div>
+</template>
+
+<!-- Template pour une carte -->
+<template id="type-template">
+  <button
+    class="flex justify-center items-center type-name w-full mx-2 text-white py-2 text-center rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
+    slot="type-name">NOM_DU_TYPE</button>
+</template>
+
+<!-- Template pour l'input de searchType -->
+<template id="searchType-template">
+  <option slot="type-name" value="">NOM_DU_TYPE</option>
+</template>
+
+<!-- Template pour le bouton d'ajout de Pokémon à une équipe -->
+<template id="add-pkm-team-template">
+  <form id="form_add_pkm_team" class=" w-full flex flex-row justify-around items-center gap-2">
+    <select class="select">
+      <option value="">Choisir une équipe</option>
+
+      <!-- Liste des équipes injectée dynamiquement via le template #team-template-->
+
+    </select>
+    <button type="submit"
+      class="button btn_add_team p-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-all duration-300 cursor-pointer">Add
+      To Team</button>
+  </form>
+</template>
+</body>
+
+
+
+</html>

@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+
+@font-face {
+  font-family: "Pokemon"; 
+  src: url("/font/Pokemon\ Solid.ttf") format("truetype"); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+@theme {
+  --font-pokemon: "Pokemon";  
+}
+
+
+.modal {
+  display: none; 
+}
+
+#type-list.hidden {
+  display: none;
+}
+
+.modal.is-active {
+  display: block;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100vw; /* Largeur totale de l'écran */
+  height: 100vh; /* Hauteur totale de l'écran */
+  background-color: rgba(0, 0, 0, 0.2); /* Fond semi-transparent */
+  backdrop-filter: blur(5px); /* Effet flou en arrière-plan */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+#app {
+  background-image: url("/img/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.progress {
+  @apply w-full h-4 rounded-lg;
+}
+
+.progress::-webkit-progress-bar {
+  @apply bg-gray-200 rounded-lg;
+}
+
+.progress::-webkit-progress-value {
+  @apply bg-blue-500 rounded-lg;
+}
+
+/* Firefox */
+.progress::-moz-progress-bar {
+  @apply bg-blue-500 rounded-lg;
+}
+
+#nav-item-team.hidden {
+  display: none;
+}
+
+select {
+  appearance: none; /* Supprime le style par défaut */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 2px solid black;
+  background-color: white;  
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Effet au survol */
+select:hover {
+  border-color: #FBBF24;
+}
