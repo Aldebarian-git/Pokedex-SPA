@@ -18,7 +18,7 @@ const toast = {
       maxWidth: 300,
       messageSize: 16, 
       layout: 2,
-      image: "src/assets/img/pikachu.png",
+      image: "/img/pikachu.png",
       imageWidth: 140,      
       
     });
@@ -27,7 +27,7 @@ const toast = {
     iziToast.error({      
       message: message,
       color: "#EF4444",
-      image: "src/assets/img/pikachu_surprise.webp",
+      image: "/img/pikachu_surprise.webp",
       imageWidth: 140,
       icon: "",
       layout: 2,

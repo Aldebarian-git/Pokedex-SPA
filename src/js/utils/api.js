@@ -1,5 +1,5 @@
 const api = {
-    baseUrl: "http://localhost:3000",
+    baseUrl: "http://pokedex-api-production-8e5a.up.railway.app",
   
     /**
      * Fonction pour appeler l'API de récupération des listes et les retourner

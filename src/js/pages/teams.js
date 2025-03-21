@@ -126,7 +126,7 @@ const teams = {
           "#" + pokemon.id;
         pokemonClone.querySelector(
           ".pkm_img"
-        ).src = `./src/assets/img/${pokemon.id}.webp`;
+        ).src = `/img/${pokemon.id}.webp`;
 
         // Ajout du bouton de suppression
         const deleteButton = document.createElement("i");        
