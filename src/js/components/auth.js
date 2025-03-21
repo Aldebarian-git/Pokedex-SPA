@@ -62,6 +62,7 @@ const auth = {
       errorMessage.classList.remove("hidden");
       errorMessage.textContent = response.message;
     } else {
+      document.getElementById("pokemon-list").innerHTML = "";
       modal.close("#login-modal");
       toast.success(response.message);
       localStorage.setItem("token", response.token);
