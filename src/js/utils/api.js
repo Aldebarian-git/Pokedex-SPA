@@ -198,8 +198,8 @@ const api = {
       );
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || `Erreur HTTP ${response.status}`);
+        const errorData = await response.json().catch(() => null);
+        throw new Error(errorData?.message || `Erreur HTTP ${response.status}`);
       }
 
       return await response.json();
@@ -283,18 +283,36 @@ const api = {
     }
   },
 
-  async updateTeam(teamId, data) {
-    const response = await fetch(api.baseUrl + `/teams/${teamId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+  async updateTeam(teamId, teamData) {
+    try {
+      if (!teamId || !teamData) {
+        throw new Error("ID de l'équipe ou données manquantes");
+      }
+
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("Non authentifié");
+      }
+
+      const response = await fetch(api.baseUrl + `/teams/${teamId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(teamData)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(errorData?.message || `Erreur lors de la mise à jour de l'équipe (${response.status})`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error(`Erreur lors de la mise à jour de l'équipe ${teamId}:`, error.message);
+      throw error;
     }
-    return true;
   },
 
   async login(data) {

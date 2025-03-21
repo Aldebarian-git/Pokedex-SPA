@@ -34,14 +34,12 @@ const auth = {
 
   updateUi() {
     if (this.isAuthenticated()) {           
-      teams.init();
-      document.getElementById("pokemon-list").innerHTML = "";
-      pokemons.init();
-      document.getElementById("search-container").classList.remove("hidden");
-      document.getElementById("nav-item-login").classList.add("hidden");
-      document.getElementById("nav-item-logout").classList.remove("hidden");
-      document.getElementById("nav-item-team").classList.remove("hidden");
-      
+        teams.init();      
+        pokemons.init();
+        document.getElementById("search-container").classList.remove("hidden");
+        document.getElementById("nav-item-login").classList.add("hidden");
+        document.getElementById("nav-item-logout").classList.remove("hidden");
+        document.getElementById("nav-item-team").classList.remove("hidden");
     }
   },
 

@@ -25,8 +25,7 @@ const pokemons = {
     });
   },
 
-  addPokemonsToDOM(pokemon) {
-        
+  addPokemonsToDOM(pokemon) {    
     const template = document.getElementById("pokemon-template");
     const clone = template.content.cloneNode(true);
     clone.querySelector(".card").classList.add("cursor-pointer");

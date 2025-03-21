@@ -2,6 +2,8 @@ import pokemons from "../pages/pokemons.js";
 import types from "../pages/types.js";
 import searchContainer from "./searchContainer.js";
 import modal from "./modal.js";
+import teams from "../pages/teams.js";
+import {auth} from "./auth.js";
 
 
 
@@ -9,19 +11,19 @@ const navigations = {
   init() {
     // On cache d'abord toutes les listes
     this.hideAllLists();
-    // On charge les pokemons par défaut
-    pokemons.init();  
+    
+    // On charge les pokemons par défaut seulement si l'utilisateur n'est pas authentifié
+    if (!auth.isAuthenticated()) {
+        pokemons.init();
+    }
 
-    // On charge le searchContainer
-    searchContainer.init();   
-
+    // On affiche la liste des pokemons
+    document.getElementById("pokemon-list").classList.remove("hidden");
     document.getElementById("search-container").classList.remove("hidden");
 
     // On récupère tous les liens de navigation
     const links = document.querySelectorAll("[data-page]");
     
-    
-
     // On ajoute un écouteur d'événements sur chaque lien
     links.forEach((link) => {
       link.addEventListener("click", (e) => {
@@ -35,8 +37,6 @@ const navigations = {
     document.getElementById("nav-item-login").addEventListener("click", (e) => {
       modal.open("#login-modal");
     });
-    
-    
   },
 
   hideAllLists() {
@@ -73,18 +73,13 @@ const navigations = {
         }
         break;
       case "teams":
-
-      
         document.getElementById("team-list").classList.remove("hidden");        
         
         // On ne recharge les équipes que si la liste est vide
         if (!document.querySelector("#team-list").children.length) {
-          document.getElementById("team-list").innerHTML = "";                            
+            document.getElementById("team-list").innerHTML = "";                            
+            teams.init();
         }
-       
-              
-        
-
         break;
 
       default:
