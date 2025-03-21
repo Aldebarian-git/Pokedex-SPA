@@ -30,7 +30,7 @@ const api = {
               "Erreur lors de la récupération des Pokémon:",
               error.message
           );
-          return [];
+          return null;
       }
   },
   

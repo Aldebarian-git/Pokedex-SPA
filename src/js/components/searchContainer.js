@@ -8,9 +8,7 @@ const searchContainer = {
         this.loadSearchContainer();
         this.searchType();
         this.searchByName();
-        if (auth.isAuthenticated()) {
-            this.loadPokemonsMoreLiked();
-        }
+        this.loadPokemonsMoreLiked();
     },
 
     async loadSearchContainer() {
@@ -33,16 +31,15 @@ const searchContainer = {
 
     async loadPokemonsMoreLiked(){
         const response = await api.getPokemons();
-        if (response && response.length > 0) {
-            const pokemonsMoreLiked = response.sort((a, b) => b.likesCount - a.likesCount).slice(0, 3);
+        const pokemonsMoreLiked = response.sort((a, b) => b.likesCount - a.likesCount).slice(0, 3);
 
-            pokemonsMoreLiked.forEach((pokemon, index) => {
-                const newDiv = document.createElement("img");
-                newDiv.src = `/img/${pokemon.id}.webp`;
-                newDiv.classList.add("w-14", "h-14", "object-cover");
-                document.querySelector(`.colonne-${index + 1}`).append(newDiv);
-            });       
-        }
+        pokemonsMoreLiked.forEach((pokemon, index) => {
+            const newDiv = document.createElement("img");
+            newDiv.src = `/img/${pokemon.id}.webp`;
+            newDiv.classList.add("w-14", "h-14", "object-cover");
+            document.querySelector(`.colonne-${index + 1}`).append(newDiv);
+        });       
+
     },
 
     searchType(){
