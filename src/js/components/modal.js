@@ -53,7 +53,7 @@ const modal = {
     // Mise à jour de l'image du Pokémon
     document.querySelector(
       ".pkm_img_modal"
-    ).src = `./src/assets/img/${pokemon.id}.webp`;
+    ).src = `/img/${pokemon.id}.webp`;
 
     // Mise à jour de la vie du Pokémon
     document.querySelector(".pokemon-hp").textContent = pokemon.hp;
