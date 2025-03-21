@@ -232,7 +232,8 @@ const api = {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorData = await response.json().catch(() => null);
+        throw new Error(errorData?.message || `Erreur lors de la suppression de l'équipe (${response.status})`);
       }
 
       return true;
@@ -244,17 +245,32 @@ const api = {
       throw error;
     }
   },
+
   async deletePokemonFromTeam(teamId, pokemonId) {
     try {
+      if (!teamId || !pokemonId) {
+        throw new Error("ID de l'équipe ou du Pokémon manquant");
+      }
+
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("Non authentifié");
+      }
+
       const response = await fetch(
         `${api.baseUrl}/teams/${teamId}/pokemons/${pokemonId}`,
         {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          }
         }
       );
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorData = await response.json().catch(() => null);
+        throw new Error(errorData?.message || `Erreur lors de la suppression du Pokémon (${response.status})`);
       }
 
       return true;
@@ -263,9 +279,10 @@ const api = {
         `Erreur lors de la suppression du Pokémon ${pokemonId} de l'équipe ${teamId}:`,
         error.message
       );
-      return false;
+      throw error;
     }
   },
+
   async updateTeam(teamId, data) {
     const response = await fetch(api.baseUrl + `/teams/${teamId}`, {
       method: "PATCH",
