@@ -23,6 +23,8 @@ const app = {
 // On initialise l'application au chargement de la page
 document.addEventListener("DOMContentLoaded", () => {
     if(auth.isAuthenticated()){
+        console.log("isAuthenticated");
+        
         document.getElementById("pokemon-list").innerHTML = "";
         auth.updateUi();
         app.init();
