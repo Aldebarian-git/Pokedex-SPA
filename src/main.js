@@ -3,13 +3,14 @@ import modal from "./js/components/modal.js";
 import navigations from "./js/components/navigations.js";
 import toast from "./js/components/toast.js";
 import { auth } from "./js/components/auth.js";
-
+import pokemons from "./js/pages/pokemons.js";
 
 const app = {
     /**
      * Initialise l'application
      */
-    init() {    
+    init() {
+        pokemons.init();    
         // On initialise d'abord la modal
         modal.init();
         // On initialise la navigation (qui va gérer l'affichage initial des pokemons)

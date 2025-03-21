@@ -33,7 +33,7 @@ const pokemons = {
     clone.querySelector('[slot="pokemon-name"]').textContent = pokemon.name;
     clone.querySelector('[slot="pokemon-number"]').textContent =
       "#" + pokemon.id;
-    clone.querySelector(".pkm_img").src = `./public/img/${pokemon.id}.webp`;
+    clone.querySelector(".pkm_img").src = `/img/${pokemon.id}.webp`;
     if (pokemon.types) {
       pokemon.types.forEach((type) => {
         const template = document.getElementById("type-template");
