@@ -235,7 +235,7 @@ const api = {
       return data;
     } catch (error) {
       console.error(
-        `Erreur lors de la suppression de l'équipe ${teamId}:`,
+        `Erreur lors de la suppression de l'équipe ${id}:`,
         error
       );
       throw error;
