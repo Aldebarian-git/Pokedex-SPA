@@ -218,25 +218,28 @@ const api = {
         throw new Error("ID de l'équipe manquant");
       }
 
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("Non authentifié");
+      }
+
       const response = await fetch(api.baseUrl + `/teams/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
-        },
-        credentials: "include",
+        }
       });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json();
-      return data;
+      return true;
     } catch (error) {
       console.error(
         `Erreur lors de la suppression de l'équipe ${id}:`,
-        error
+        error.message
       );
       throw error;
     }
