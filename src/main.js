@@ -3,7 +3,6 @@ import modal from "./js/components/modal.js";
 import navigations from "./js/components/navigations.js";
 import toast from "./js/components/toast.js";
 import { auth } from "./js/components/auth.js";
-import pokemons from "./js/pages/pokemons.js";
 
 const app = {
     /**
@@ -23,7 +22,8 @@ const app = {
 
 // On initialise l'application au chargement de la page
 document.addEventListener("DOMContentLoaded", () => {
-    if(auth.isAuthenticated()){          
+    if(auth.isAuthenticated()){
+        document.getElementById("pokemon-list").innerHTML = "";
         auth.updateUi();
         app.init();
     } else {        
