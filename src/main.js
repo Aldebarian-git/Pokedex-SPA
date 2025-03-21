@@ -9,8 +9,7 @@ const app = {
     /**
      * Initialise l'application
      */
-    init() {
-        pokemons.init();    
+    init() {           
         // On initialise d'abord la modal
         modal.init();
         // On initialise la navigation (qui va gérer l'affichage initial des pokemons)
