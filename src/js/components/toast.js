@@ -5,22 +5,27 @@ const toast = {
   init() {
     iziToast.settings({
       position: "topRight",
-      timeout: 3000,                          
+      timeout: 3000, 
+      progressBar: false,
+      animateInside: true,
+      close: false,
+      closeOnClick: true,      
+      icon: "",
+      layout: 2,
+      messageColor: "#fff",
+      messageSize: 16,
+      maxWidth:600,
+      imageWidth: 100,      
     });
   },
 
   success(message) {
     iziToast.success({      
       message: message,
-      backgroundColor: "#22C55E",
-      icon: "",
-      messageColor: "#fff",
-      maxWidth: 300,
-      messageSize: 16, 
-      layout: 2,
+      backgroundColor: "#22C55E",                   
       image: "/img/pikachu.png",
-      imageWidth: 140,      
-      
+            
+
     });
   },
   error(message) {
@@ -28,12 +33,7 @@ const toast = {
       message: message,
       color: "#EF4444",
       image: "/img/pikachu_surprise.webp",
-      imageWidth: 140,
-      icon: "",
-      layout: 2,
-      messageColor: "#fff",
-      maxWidth: 300,
-      messageSize: 16,
+                  
     });
   },
   warning(message) {
