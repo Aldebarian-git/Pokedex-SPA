@@ -36,14 +36,18 @@
   z-index: 50;
 }
 
-#app {
+body {
   background-image: url("/img/background.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: fixed;}
+
+#app {
+  
   min-height: 100vh;
 }
+
 
 .progress {
   @apply w-full h-4 rounded-lg;

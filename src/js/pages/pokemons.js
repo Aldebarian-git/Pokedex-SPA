@@ -49,7 +49,7 @@ const pokemons = {
       "rounded-lg",
       "hover:bg-red-700",      
       "cursor-pointer",
-      "mt-4"
+      "mt-4",                  
     );
     loadMore.textContent = "Voir les pokémons suivants";
     document.getElementById("pokemon-list").append(loadMore); 
@@ -66,7 +66,7 @@ const pokemons = {
       "rounded-lg",
       "hover:bg-red-700",
       "cursor-pointer",
-      "mt-4"
+      "mt-4",                 
     );
     loadLess.textContent = "Voir moins";
     document.getElementById("pokemon-list").append(loadLess);
