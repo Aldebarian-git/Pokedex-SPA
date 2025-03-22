@@ -41,7 +41,9 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;}
+  background-attachment: fixed;
+  min-height: 100vh;
+}
 
 .body-no-scroll {
   overflow: hidden;
@@ -54,7 +56,7 @@ body {
 
 #app {
   
-  min-height: 100vh;
+  min-height: 60vh;
 }
 
 
