@@ -51,8 +51,25 @@ const pokemons = {
       "cursor-pointer",
       "mt-4"
     );
-    loadMore.textContent = "Voir plus de Pokémon";
-    document.getElementById("pokemon-list").append(loadMore);  
+    loadMore.textContent = "Voir les pokémons suivants";
+    document.getElementById("pokemon-list").append(loadMore); 
+    
+    const loadLess = document.createElement("button");
+    loadLess.id = "load-less";
+    loadLess.classList.add(
+      "bg-red-600",
+      "border-2",
+      "border-black", 
+      "text-white",
+      "py-2",
+      "px-4",
+      "rounded-lg",
+      "hover:bg-red-700",
+      "cursor-pointer",
+      "mt-4"
+    );
+    loadLess.textContent = "Voir moins";
+    document.getElementById("pokemon-list").append(loadLess);
 
     document.getElementById("load-more").addEventListener("click", () => {      
       const hiddenPokemons = document.querySelectorAll(
@@ -68,7 +85,13 @@ const pokemons = {
       }
     });
 
+    document.getElementById("load-less").addEventListener("click", () => {
+      const hiddenPokemons = document.querySelectorAll(".card-container.show");
+      hiddenPokemons.forEach((pokemon) => pokemon.classList.remove("show"));
+    });
+
     
+
   },
 
   HoldaddPokemonsToDOM(pokemon) {
