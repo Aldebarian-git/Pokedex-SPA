@@ -83,3 +83,11 @@ select {
 select:hover {
   border-color: #FBBF24;
 }
+
+input:hover {
+  border-color: #FBBF24;
+}
+
+input:focus {
+  border-color: #FBBF24;
+}
