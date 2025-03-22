@@ -8,10 +8,10 @@ import pokemons from "../pages/pokemons.js";
 const modal = {
   init() {
     // Ajouter un écouteur d'événements sur l'overlay (la div avec la classe modal)
-    document.querySelectorAll(".modal").forEach(modal => {
+    document.querySelectorAll(".modal").forEach((modal) => {
       modal.addEventListener("click", (e) => {
         // Vérifier si le clic a été fait sur l'overlay (la div avec la classe modal)
-        // et non sur la modal-card (le contenu de la modal)        
+        // et non sur la modal-card (le contenu de la modal)
         if (e.target === modal) {
           this.close();
         }
@@ -20,7 +20,7 @@ const modal = {
 
     // Garder les écouteurs sur les boutons de fermeture
     document.querySelectorAll(".close").forEach((element) => {
-      element.addEventListener("click", () => {        
+      element.addEventListener("click", () => {
         this.close();
       });
     });
@@ -35,16 +35,14 @@ const modal = {
     if (element) {
       element.classList.remove("is-active");
     }
-    if(element.id === "login-modal"){
+    if (element.id === "login-modal") {
       document.getElementById("login-form").reset();
       document.getElementById("error-message").textContent = "";
       document.getElementById("error-message").classList.add("hidden");
-    }    
+    }
   },
 
   async editModal(selector, pokemon) {
-    
-    const modal = document.querySelector("#pkm_detail");
     // Donnée l'id du Pokémon
     document.querySelector("#pkm_detail").dataset.pokemonId = pokemon.id;
 
@@ -53,9 +51,7 @@ const modal = {
     document.querySelector(".pkm_number").textContent = `#${pokemon.id}`;
 
     // Mise à jour de l'image du Pokémon
-    document.querySelector(
-      ".pkm_img_modal"
-    ).src = `/img/${pokemon.id}.webp`;
+    document.querySelector(".pkm_img_modal").src = `/img/${pokemon.id}.webp`;
 
     // Mise à jour de la vie du Pokémon
     document.querySelector(".pokemon-hp").textContent = pokemon.hp;
@@ -103,33 +99,44 @@ const modal = {
       });
     }
 
-    if(auth.isAuthenticated()){
+    if (auth.isAuthenticated()) {
       const teams = await api.getTeams();
-     
-    // Mise à jour des équipes si elles existent
-    if (teams) {      
 
-      const containerFormAddPkmTeam = document.querySelector(".add_team_container");
-      containerFormAddPkmTeam.innerHTML = "";
-      const cloneFormAddPkmTeam = document.querySelector("#add-pkm-team-template").content.cloneNode(true);
-      
-      const inputSelect = cloneFormAddPkmTeam.querySelector(".select");
-      inputSelect.innerHTML = "";
-      teams.forEach((team) => {
-        const newOption = document.createElement("option");
-        newOption.dataset.teamId = team.id;
-        newOption.value = team.id;
-        newOption.textContent = team.name;
-        inputSelect.appendChild(newOption);
-      });
+      // Mise à jour des équipes si elles existent
+      if (teams) {
+        const containerFormAddPkmTeam = document.querySelector(
+          ".add_team_container"
+        );
+        containerFormAddPkmTeam.innerHTML = "";
+        const cloneFormAddPkmTeam = document
+          .querySelector("#add-pkm-team-template")
+          .content.cloneNode(true);
 
-      // Ajout d'un événement sur le bouton d'ajout
-      cloneFormAddPkmTeam.querySelector(".btn_add_team").addEventListener("click", (e) => {
-        e.preventDefault();
-        pokemons.addPokemonToTeam();
-      });
-      containerFormAddPkmTeam.append(cloneFormAddPkmTeam);
-    }}
+        const inputSelect = cloneFormAddPkmTeam.querySelector(".select");
+        while (inputSelect.children.length > 1) {
+          inputSelect.removeChild(inputSelect.lastChild);
+        }        
+
+        teams.forEach((team) => {
+          const newOption = document.createElement("option");
+          newOption.dataset.teamId = team.id;
+          newOption.value = team.id;
+          newOption.textContent = team.name;
+          inputSelect.appendChild(newOption);
+        });
+
+        
+
+        // Ajout d'un événement sur le bouton d'ajout
+        cloneFormAddPkmTeam
+          .querySelector(".btn_add_team")
+          .addEventListener("click", (e) => {
+            e.preventDefault();
+            pokemons.addPokemonToTeam();
+          });
+        containerFormAddPkmTeam.append(cloneFormAddPkmTeam);
+      }
+    }
 
     this.open(selector);
   },
