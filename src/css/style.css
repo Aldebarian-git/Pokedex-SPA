@@ -128,6 +128,16 @@ input:hover {
 
 .card-container {
   user-select: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  background-color: transparent;
+  transform: rotate(0deg) scale(1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-container:hover {
+  background-color: #e0e0e0;
+  transform: rotate(1deg) !important;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .card-container:after {
@@ -169,13 +179,63 @@ input:hover {
   z-index: 100;
 }
 
-.card-container:hover {
-  background-color: #e0e0e0;
-  transform: rotate(1deg) scale(1.02);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+
+
+/* CARD */
+/* Fade In depuis la gauche */
+@keyframes fadeInLeft {
+  from {
+      opacity: 0;
+      transform: translateX(-20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+/* Animation avec rebond */
+@keyframes bounceIn {
+  0% {
+      opacity: 0;
+      transform: scale(0.3) rotate(0deg);
+  }
+  50% {
+      opacity: 0.9;
+      transform: scale(1.1) rotate(0deg);
+  }
+  80% {
+      opacity: 1;
+      transform: scale(0.9) rotate(0deg);
+  }
+  100% {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+  }
+}
+
+#pokemon-list .card-container {
+  opacity: 0;
+  animation: bounceIn 0.5s ease-out forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 
+
+/* Pour créer l'effet cascade */
+#pokemon-list .card-container:nth-child(6n + 1) { animation-delay: 0.1s; }
+#pokemon-list .card-container:nth-child(6n + 2) { animation-delay: 0.2s; }
+#pokemon-list .card-container:nth-child(6n + 3) { animation-delay: 0.3s; }
+#pokemon-list .card-container:nth-child(6n + 4) { animation-delay: 0.4s; }
+#pokemon-list .card-container:nth-child(6n + 5) { animation-delay: 0.5s; }
+#pokemon-list .card-container:nth-child(6n + 6) { animation-delay: 0.6s; }
+
+
+
+
+
+
+/* BATTERY */
 .battery {
   border: 3px solid #333;
   width: 18px;
