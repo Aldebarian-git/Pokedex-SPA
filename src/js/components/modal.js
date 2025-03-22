@@ -28,6 +28,8 @@ const modal = {
 
   open(selector) {
     document.querySelector(selector).classList.add("is-active");
+    const body = document.body;
+    body.classList.add("body-no-scroll");
   },
 
   close() {
@@ -40,6 +42,8 @@ const modal = {
       document.getElementById("error-message").textContent = "";
       document.getElementById("error-message").classList.add("hidden");
     }
+    const body = document.body;
+    body.classList.remove("body-no-scroll");
   },
 
   async editModal(selector, pokemon) {
