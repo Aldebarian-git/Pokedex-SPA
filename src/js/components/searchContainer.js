@@ -9,6 +9,14 @@ const searchContainer = {
         this.searchType();
         this.searchByName();
         this.loadPokemonsMoreLiked();
+        this.bindEvents();
+    },
+
+    bindEvents(){
+        document.getElementById("reset-select").addEventListener("click", () => {
+            document.getElementById("search-type").selectedIndex = 0;            
+            pokemons.init();
+        });
     },
 
     async loadSearchContainer() {
@@ -44,10 +52,11 @@ const searchContainer = {
 
     searchType(){
         // On ajoute un écouteur d'événements sur le select
-    document.getElementById("search-type").addEventListener("change", async (e) => {
+    document.getElementById("search-type").addEventListener("change", async (e) => {        
         const selectedOption = e.target.options[e.target.selectedIndex]; // Récupère l'option sélectionnée
         const typeId = selectedOption.dataset.typeId; // Récupère l'attribut data-type-id de l'option
-        if(typeId){            
+        if(typeId){ 
+            document.getElementById("reset-select").classList.remove("hidden");           
         const response = await api.getPokemons(); 
         const pokemonsOnType = response.filter((pokemon) => 
             pokemon.types.some((type) => type.id === parseInt(typeId))
@@ -61,6 +70,7 @@ const searchContainer = {
           });
         } else {
           document.querySelector("#pokemon-list").innerHTML = "";
+          document.getElementById("reset-select").classList.add("hidden");
             pokemons.init();          
         }
       });

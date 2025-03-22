@@ -1,6 +1,5 @@
 import pokemons from "../pages/pokemons.js";
 import types from "../pages/types.js";
-import searchContainer from "./searchContainer.js";
 import modal from "./modal.js";
 import teams from "../pages/teams.js";
 import {auth} from "./auth.js";
@@ -26,7 +25,7 @@ const navigations = {
     
     // On ajoute un écouteur d'événements sur chaque lien
     links.forEach((link) => {
-      link.addEventListener("click", (e) => {
+      link.addEventListener("click", (e) => {        
         e.preventDefault();
         const page = e.target.dataset.page;        
         this.navigateTo(page);
@@ -55,15 +54,13 @@ const navigations = {
 
     // On gère la navigation en fonction de la page
     switch (page) {
-      case "home":
-        // On cache le bouton d'ajout d'équipe
-        
+      case "home":       
         document.getElementById("search-container").classList.remove("hidden");
         document.getElementById("pokemon-list").classList.remove("hidden");
-        // On ne recharge les pokemons que si la liste est vide
-        if (!document.querySelector("#pokemon-list").children.length) {
-          pokemons.init();
-        }
+        document.getElementById("pokemon-list").innerHTML = "";
+        document.getElementById("search-type").selectedIndex = 0;
+        pokemons.init();
+        
         break;
       case "types":
         document.getElementById("type-list").classList.remove("hidden");
