@@ -119,7 +119,7 @@ input:hover {
 .card-container:after {
   content: "";
   position: absolute;
-  top: -12%;
+  top: -10%;
   left: -60%;
   width: 30%;
   height: 130%;
@@ -155,13 +155,15 @@ input:hover {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-#pokemon-list:nth-child(n+10) {
-  display: none;
-}
 
 .card-container.show {
   display: block !important;
 }
+
+
+
+
+
 
 
 

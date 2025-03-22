@@ -33,7 +33,7 @@ const pokemons = {
     pokemonListItems.forEach((item, index) => {
       if (index >= 6) {
         // L'index commence à 0, donc 6 correspond au 7e enfant
-        item.style.display = "none";
+        item.classList.add("hidden");
       }
     });
 
@@ -72,22 +72,27 @@ const pokemons = {
     document.getElementById("pokemon-list").append(loadLess);
 
     document.getElementById("load-more").addEventListener("click", () => {      
-      const hiddenPokemons = document.querySelectorAll(
-        ".card-container:nth-child(n+10):not(.show)"
-      );
+      const hiddenPokemons = document.querySelectorAll(".card-container.hidden");
       
       const nextBatch = Array.from(hiddenPokemons).slice(0, 6);
-      nextBatch.forEach((pokemon) => pokemon.classList.add("show"));      
+      nextBatch.forEach((pokemon) => pokemon.classList.remove("hidden"));      
 
       // Cacher le bouton s'il n'y a plus de Pokémon à afficher
-      if (document.querySelectorAll(".card-container:not(.show)").length === 0) {
-        document.getElementById("load-more").style.display = "none";
+      if (document.querySelectorAll(".card-container.hidden").length === 0) {
+        document.getElementById("load-more").classList.add("hidden");
       }
     });
 
     document.getElementById("load-less").addEventListener("click", () => {
-      const hiddenPokemons = document.querySelectorAll(".card-container.show");
-      hiddenPokemons.forEach((pokemon) => pokemon.classList.remove("show"));
+      const allPokemons = document.querySelectorAll(".card-container");
+    
+      // Cacher tous les Pokémon
+      allPokemons.forEach((pokemon) => pokemon.classList.add("hidden"));
+    
+      // Rendre visibles seulement les 6 premiers
+      Array.from(allPokemons)
+        .slice(0, 6)
+        .forEach((pokemon) => pokemon.classList.remove("hidden"));
     });
 
     
