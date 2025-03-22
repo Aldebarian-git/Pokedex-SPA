@@ -25,6 +25,48 @@ const pokemons = {
       // this.addPokemonsToDOM(pokemon);
       this.addPokemonsToDOM(pokemon);
     });
+
+    // Sélectionner tous les éléments enfants de #pokemon-list
+    const pokemonListItems = document.querySelectorAll("#pokemon-list > *");
+
+    // Parcourir les éléments et les masquer à partir du 7e enfant
+    pokemonListItems.forEach((item, index) => {
+      if (index >= 6) {
+        // L'index commence à 0, donc 6 correspond au 7e enfant
+        item.style.display = "none";
+      }
+    });
+
+    const loadMore = document.createElement("button");
+    loadMore.id = "load-more";
+    loadMore.classList.add(
+      "bg-blue-500",
+      "hover:bg-blue-700",
+      "text-white",
+      "font-bold",
+      "py-2",
+      "px-4",
+      "rounded",
+      "mt-4"
+    );
+    loadMore.textContent = "Voir plus de Pokémon";
+    document.getElementById("pokemon-list").append(loadMore);
+
+    document.getElementById("load-more").addEventListener("click", () => {
+      console.log("click");
+      const hiddenPokemons = document.querySelectorAll(
+        ".card-container:nth-child(n+7):not(.show)"
+      );
+      console.log(hiddenPokemons);
+      const nextBatch = Array.from(hiddenPokemons).slice(0, 6);
+      nextBatch.forEach((pokemon) => pokemon.classList.add("show"));
+      console.log(nextBatch);
+
+      // Cacher le bouton s'il n'y a plus de Pokémon à afficher
+      if (document.querySelectorAll(".card-container:not(.show)").length === 0) {
+        document.getElementById("load-more").style.display = "none";
+      }
+    });
   },
 
   HoldaddPokemonsToDOM(pokemon) {
@@ -79,12 +121,23 @@ const pokemons = {
   },
 
   addPokemonsToDOM(pokemon) {
-    const backgroundCardImg =["/img/bg-card-1.jpg", "/img/bg-card-2.jpg", "/img/bg-card-3.jpg", "/img/bg-card-4.jpg", "/img/bg-card-5.jpg", "/img/bg-card-6.jpg", "/img/bg-card-7.jpg"];
-    const randomBackgroundCardImg = backgroundCardImg[Math.floor(Math.random() * backgroundCardImg.length)];
+    const backgroundCardImg = [
+      "/img/bg-card-1.jpg",
+      "/img/bg-card-2.jpg",
+      "/img/bg-card-3.jpg",
+      "/img/bg-card-4.jpg",
+      "/img/bg-card-5.jpg",
+      "/img/bg-card-6.jpg",
+      "/img/bg-card-7.jpg",
+    ];
+    const randomBackgroundCardImg =
+      backgroundCardImg[Math.floor(Math.random() * backgroundCardImg.length)];
     const template = document.getElementById("pokemon-card-template");
     const clone = template.content.cloneNode(true);
 
-    clone.querySelector(".card-container").style.backgroundImage = `url(${randomBackgroundCardImg})`;
+    clone.querySelector(
+      ".card-container"
+    ).style.backgroundImage = `url(${randomBackgroundCardImg})`;
     clone.querySelector(".card-container").style.backgroundSize = "cover";
     clone.querySelector(".card-container").style.backgroundPosition = "center";
     clone.querySelector(".card-container").style.backgroundRepeat = "no-repeat";
@@ -127,7 +180,7 @@ const pokemons = {
         typeDiv.style.color = "#fff";
         clone.querySelector(".pokemon-types").appendChild(typeDiv);
       });
-    }    
+    }
     clone.querySelector(".pokemon-stat-pv").textContent = pokemon.hp;
     clone.querySelector(".pokemon-stat-atk").textContent = pokemon.atk;
     clone.querySelector(".pokemon-stat-def").textContent = pokemon.def;
@@ -154,7 +207,6 @@ const pokemons = {
         e.stopPropagation();
         this.handleLike(pokemon.id);
       });
-      
     }
 
     clone.querySelector(".card").addEventListener("click", () => {
@@ -200,7 +252,7 @@ const pokemons = {
     );
 
     if (icon.classList.contains("text-red-500")) {
-      await api.togglePokemonLike(pokemonId);            
+      await api.togglePokemonLike(pokemonId);
       icon.classList.remove("text-red-500");
       icon.classList.add("text-gray-500");
       toast.error("Pokémon unliké");
