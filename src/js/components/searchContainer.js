@@ -18,6 +18,31 @@ const searchContainer = {
             document.getElementById("reset-select").classList.add("hidden");
             pokemons.init();
         });
+
+
+        document.querySelector(".random-pokemon").addEventListener("click", () => {
+            const pokemons = document.querySelectorAll(".card-container");
+            const btnLoadMore = document.getElementById("load-more");
+           
+            pokemons.forEach(pokemon => {
+                pokemon.classList.add("hidden");
+            });
+            const randomPokemons = [];
+            const selectedPokemons = new Set(); // Crée un Set pour éviter les doublons
+            
+            while (randomPokemons.length < 6) {
+                const randomPokemon = pokemons[Math.floor(Math.random() * pokemons.length)];
+            
+                // Vérifie si le Pokémon a déjà été sélectionné
+                if (!selectedPokemons.has(randomPokemon)) {
+                    randomPokemons.push(randomPokemon);
+                    selectedPokemons.add(randomPokemon); // Ajoute à l'ensemble pour éviter les doublons
+                    randomPokemon.classList.remove("hidden");                    
+                }
+            } 
+            
+            btnLoadMore.classList.add("hidden");
+        });
     },
 
     async loadSearchContainer() {

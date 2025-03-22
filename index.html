@@ -32,7 +32,7 @@
         Pokedex
       </h1>
       <div
-  class="flex flex-row items-center justify-center gap-4 p-4 rounded-lg bg-gradient-to-br from-red-500 to-red-700 max-w-[780px] mx-auto mb-10 h-20 border-2 border-black relative shadow-[0px_8px_15px_rgba(0,0,0,0.7)]">
+        class="flex flex-row items-center justify-center gap-2 p-4 rounded-lg bg-gradient-to-br from-red-500 to-red-700 max-w-[1000px] mx-auto mb-10 h-20 border-2 border-black relative shadow-[0px_8px_15px_rgba(0,0,0,0.7)]">
 
         <div
           class="bg-white w-11 h-11 rounded-full border-2 border-black flex items-center justify-center cursor-pointer hover:scale-102 transition-all duration-300  flex-shrink-0"
@@ -43,6 +43,11 @@
         <!-- Contenu du search-container -->
         <div class="flex flex-row items-center justify-center gap-4 hidden sm:flex">
 
+          <div
+          class="random-pokemon bg-white w-11 h-11 rounded-full border-2 border-black flex items-center justify-center cursor-pointer hover:scale-102 transition-all duration-300 flex-shrink-0">
+          <i class="fas fa-random text-2xl text-red-500 hover:text-green-500 transition-all duration-300"></i>
+
+          </div>
           <!-- Filtre par nom -->
           <input class="w-[200px] px-4 py-2 border-2 border-black rounded-lg shadow-sm bg-white sm:block hidden"
             type="search" id="search-name" placeholder="Nom du Pokémon..." />
@@ -108,7 +113,7 @@
     </div>
 
     <div id="pokemon-list" class="flex flex-row flex-wrap gap-6 max-w-[900px] mx-auto justify-center items-center">
-    
+
     </div>
     <div id="type-list"
       class="max-w-[500px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 justify-center items-center hidden">
@@ -139,20 +144,21 @@
             <div class="battery">
               <div class="battery-level" style="height:75%;"></div>
             </div>
-            
+
             <svg xmlns="http://www.w3.org/2000/svg"
-            class="w-6 h-6 text-black cursor-pointer hover:text-red-200 transition-all duration-300 close" fill="none"
-            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </div>
+              class="w-6 h-6 text-black cursor-pointer hover:text-red-200 transition-all duration-300 close" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </div>
         </header>
-        <section class="modal-card-body flex flex-col items-center bg-white rounded-lg my-4 border-2 border-black shadow-[0_0_40px_10px_rgba(255,255,255,0.4)]">
+        <section
+          class="modal-card-body flex flex-col items-center bg-white rounded-lg my-4 border-2 border-black shadow-[0_0_40px_10px_rgba(255,255,255,0.4)]">
 
 
 
           <div class="">
-            <img src="#" class="pkm_img_modal h-40" />
+            <img src="#" class="pkm_img_modal h-40 mt-4 mb-2" />
           </div>
           <div class="pokemon-types-modal flex justify-center gap-2">
             <!-- Les types seront ajoutés ici dynamiquement -->
@@ -385,7 +391,8 @@
 
   </main>
 
-  <footer class="bg-gradient-to-br from-red-600 to-red-700 text-white p-4 mb-4 shadow-md max-w-[780px] mx-auto border-2 border-black rounded-lg">
+  <footer
+    class="bg-gradient-to-br from-red-600 to-red-700 text-white p-4 mb-4 shadow-md max-w-[780px] mx-auto border-2 border-black rounded-lg">
     <div class="flex flex-col items-center md:flex-row justify-between gap-2">
       <div class="text-center md:text-left">
         <h2 class="text-base font-semibold mb-1 text-white">Pokédex</h2>
@@ -421,10 +428,6 @@
       <p class="text-white">&copy; 2024 Pokédex - Flavien GUILLON. Tous droits réservés.</p>
     </div>
   </footer>
-  
-  
-  
-
 
   <!-- Template pour une équipe -->
   <template id="team-template">
