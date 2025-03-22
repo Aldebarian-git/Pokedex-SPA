@@ -57,10 +57,9 @@ const pokemons = {
       const hiddenPokemons = document.querySelectorAll(
         ".card-container:nth-child(n+7):not(.show)"
       );
-      console.log(hiddenPokemons);
+      
       const nextBatch = Array.from(hiddenPokemons).slice(0, 6);
-      nextBatch.forEach((pokemon) => pokemon.classList.add("show"));
-      console.log(nextBatch);
+      nextBatch.forEach((pokemon) => pokemon.classList.add("show"));      
 
       // Cacher le bouton s'il n'y a plus de Pokémon à afficher
       if (document.querySelectorAll(".card-container:not(.show)").length === 0) {
