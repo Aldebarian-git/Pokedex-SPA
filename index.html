@@ -25,7 +25,7 @@
 
 <body>  
 
-  <main id="app" class="sm:p-0 md:p-6 relative w-full h-full">
+  <main id="app" class="sm:p-0 md:p-6 relative w-full h-full">    
 
     <div id="search-container" class="flex flex-col ">
       <h1 class="text-6xl font-bold text-center font-pokemon text-red-600 tracking-widest h-24 my-2 relative">
@@ -105,7 +105,7 @@
     </div>
 
 
-    <div id="pokemon-list" class="flex flex-row flex-wrap gap-6 max-w-[1000px] mx-auto"></div>
+    <div id="pokemon-list" class="flex flex-row flex-wrap gap-6 max-w-[1000px] mx-auto justify-center items-center"></div>
     <div id="type-list"
       class="max-w-[500px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 justify-center items-center hidden">
     </div>
@@ -437,8 +437,58 @@
       To Team</button>
   </form>
 </template>
+
+
 </body>
 
+<!-- Nouveau template pour la carte du Pokémon -->
+<template id="pokemon-card-template">
+  <div class=" card-container w-[250px] h-[350px] border-6 border-amber-300 bg-gradient-to-tr from-amber-100 to-amber-200 rounded-xl shadow-lg p-3 flex flex-col items-center relative">
+    <button class="text-white hover:text-red-500 text-4xl transition absolute top-[-22px] right-[-22px] cursor-pointer like-btn z-50 hover:scale-102 hover:shadow-2xl">      
+    </button>
+
+    
+
+    <!-- Image du Pokémon -->
+    <div class="img-container w-[100%] h-[110px] shadow-md p-1 border-2 border-amber-300">
+      <img src="/img/1.webp" alt="Pokémon" class="w-[100%] h-[100%] object-contain rounded-md">
+      
+    </div>
+  
+    <!-- Nom du Pokémon -->
+     <div class="flex flex-row justify-center items-center text-center">
+       <h2 slot="pokemon-name" class="text-xl font-bold text-gray-900 mt-1">NOM_DU_POKEMON</h2>
+       <p slot="pokemon-number" class="text-sm text-black">NUMERO</p>
+     </div>
+  
+    <!-- Type du Pokémon -->
+     <div class="pokemon-types flex flex-row justify-center items-center gap-1">
+      <!-- injecter les types ici -->      
+     </div>
+  
+    <!-- Statistiques -->
+    <div class="pokemon-stats mt-2 w-full text-sm backdrop-blur-sm bg-transparent bg-opacity-50 rounded-lg p-1 px-4">
+      <!-- injecter les statistiques ici -->
+      <div class="flex justify-between border-b py-1">
+        <p class="">PV :</p>
+        <p class="pokemon-stat-pv"></p>
+      </div>
+      <div class="flex justify-between border-b py-1">
+        <p class="">Attaque :</p>
+        <p class="pokemon-stat-atk"></p>
+      </div>
+      <div class="flex justify-between border-b py-1">
+        <p class="">Défense :</p>
+        <p class="pokemon-stat-def"></p>
+      </div>
+    </div>
+    
+    
+    <button class="card mt-2 bg-gradient-to-tr from-red-500 to-red-700 text-white border-1 border-black px-2 py-1 rounded-lg shadow-md hover:bg-blue-700 transition cursor-pointer hover:scale-102 hover:shadow-2xl ">
+      Détails
+    </button>
+  </div>
+</template>
 
 
 </html>
