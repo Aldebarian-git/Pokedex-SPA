@@ -54,12 +54,12 @@
 }
 
 .progress::-webkit-progress-value {
-  @apply bg-blue-500 rounded-lg;
+  @apply bg-gradient-to-r from-red-500 to-red-600 rounded-lg;
 }
 
 /* Firefox */
 .progress::-moz-progress-bar {
-  @apply bg-blue-500 rounded-lg;
+    @apply bg-red-600 rounded-lg;
 }
 
 #nav-item-team.hidden {

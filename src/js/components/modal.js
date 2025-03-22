@@ -44,11 +44,13 @@ const modal = {
 
   async editModal(selector, pokemon) {
     
+    const modal = document.querySelector("#pkm_detail");
     // Donnée l'id du Pokémon
     document.querySelector("#pkm_detail").dataset.pokemonId = pokemon.id;
 
     // Mise à jour du nom du Pokémon
-    document.querySelector(".pkm_name").textContent = `${pokemon.name} #${pokemon.id}`;
+    document.querySelector(".pkm_name").textContent = `${pokemon.name}`;
+    document.querySelector(".pkm_number").textContent = `#${pokemon.id}`;
 
     // Mise à jour de l'image du Pokémon
     document.querySelector(

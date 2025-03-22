@@ -104,7 +104,6 @@
       </div>
     </div>
 
-
     <div id="pokemon-list" class="flex flex-row flex-wrap gap-6 max-w-[1000px] mx-auto justify-center items-center"></div>
     <div id="type-list"
       class="max-w-[500px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 justify-center items-center hidden">
@@ -118,21 +117,36 @@
     <!-- Modal pour les détails du Pokémon -->
     <div class="modal" id="pkm_detail">
 
-      <div class="modal-card max-w-[400px] w-full text-center bg-white rounded-lg p-4 shadow-lg">
+      
+      <div class="relative modal-card max-w-[400px] w-full text-center bg-gradient-to-br from-red-500 to-red-700 rounded-lg p-4 shadow-lg border-2 border-gray-900">
+        <img src="/img/pokeball.png" alt="une Pokeball" class="w-20 h-20 hidden sm:block absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+
         <header class="modal-card-head flex items-center justify-between">
-          <h2 class="modal-card-title pkm_name text-2xl">Bulbizarre</h2>
-          <i
-            class="fa fa-window-close close cursor-pointer text-3xl text-red-400 hover:text-red-600 transition-all duration-300"></i>
+          <div class="flex flex-row justify-center items-center text-center">
+            <h2 slot="pokemon-name-modal" class=" pkm_name text-2xl font-bold text-white mt-1">NOM_DU_POKEMON</h2>
+            <p slot="pokemon-number-modal" class="pkm_number text-xl text-white">NUMERO</p>
+          </div>
+                   
+          <!-- <i
+            class="fa fa-window-close close cursor-pointer text-3xl border-2 border-black rounded-lg p-2 text-white hover:text-red-600 transition-all duration-300"></i> -->
+            <svg xmlns="http://www.w3.org/2000/svg" 
+    class="w-6 h-6 text-black cursor-pointer hover:text-red-200 transition-all duration-300 close" 
+    fill="none" 
+    viewBox="0 0 24 24" 
+    stroke="currentColor" 
+    stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+</svg>
         </header>
-        <section class="modal-card-body flex flex-col items-center">
-          <div class="mr-4">
+        <section class="modal-card-body flex flex-col items-center bg-white rounded-lg my-4 border-2 border-black">
+          <div class="">
             <img src="#" class="pkm_img_modal h-40" />
           </div>
-          <div class="pokemon-types-modal flex justify-center gap-2 m-3 w-full">
+          <div class="pokemon-types-modal flex justify-center gap-2">
             <!-- Les types seront ajoutés ici dynamiquement -->
           </div>
-          <div class="modal-card-content pkm_stats_modal w-full p-6">
-            <h4 class="">Statistiques</h4>
+          <div class="modal-card-content pkm_stats_modal w-full p-4">
+            <h4 class="font-pokemon text-2xl tracking-widest text-red-600">Statistiques</h4>
             <p class="modal_team_types"></p>
             <div>
               <div class="flex justify-start">
@@ -358,31 +372,7 @@
     </div>
 
   </main>
-<!-- Template pour une carte -->
-<template id="pokemon-template">
 
-  <div
-    class="card border-6 border-amber-300 text-center max-w-xs rounded-lg shadow-lg hover:shadow-2xl  hover:scale-102 bg-gradient-to-b from-red-100 to-blue-200 transition-all duration-300 flex m-auto relative"
-    data-type="pokemon">
-    <button class="text-gray-500 hover:text-red-500 text-2xl transition absolute top-0 right-0 m-2 cursor-pointer like-btn z-50">
-      
-    </button>
-
-    <div class="block p-4 w-full">
-      <div class="card-image px-4">
-        <img class="pkm_img w-full h-60 object-contain rounded-md mx-auto" src="./src/assets/img/"
-          alt="Image du Pokémon" />
-      </div>
-      <div class="card-content">
-        <p slot="pokemon-number" class="pokemon-number text-sm font-medium text-gray-600">#NUMERO</p>
-        <p slot="pokemon-name" class="pokemon-name text-xl font-semibold text-gray-800">NOM_DU_POKEMON</p>
-        <div class="pokemon-types flex justify-center gap-2 mt-2">
-          <!-- Les types seront ajoutés ici dynamiquement -->
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
 
 <!-- Template pour une équipe -->
 <template id="team-template">
@@ -411,11 +401,11 @@
   </div>
 </template>
 
-<!-- Template pour une carte -->
+<!-- Template pour un type -->
 <template id="type-template">
-  <button
-    class="flex justify-center items-center type-name w-full mx-2 text-white py-2 text-center rounded-lg hover:scale-105 transition-all duration-300 cursor-pointer"
-    slot="type-name">NOM_DU_TYPE</button>
+  <p
+    class="type-name text-sm rounded-full mt-1 px-3 py-1"
+    slot="type-name">NOM_DU_TYPE</p>
 </template>
 
 <!-- Template pour l'input de searchType -->
@@ -437,9 +427,6 @@
       To Team</button>
   </form>
 </template>
-
-
-</body>
 
 <!-- Nouveau template pour la carte du Pokémon -->
 <template id="pokemon-card-template">
@@ -489,6 +476,36 @@
     </button>
   </div>
 </template>
+
+<!-- Ancien Template pour une carte -->
+<template id="pokemon-template">
+
+  <div
+    class="card border-6 border-amber-300 text-center max-w-xs rounded-lg shadow-lg hover:shadow-2xl  hover:scale-102 bg-gradient-to-b from-red-100 to-blue-200 transition-all duration-300 flex m-auto relative"
+    data-type="pokemon">
+    <button class="text-gray-500 hover:text-red-500 text-2xl transition absolute top-0 right-0 m-2 cursor-pointer like-btn z-50">
+      
+    </button>
+
+    <div class="block p-4 w-full">
+      <div class="card-image px-4">
+        <img class="pkm_img w-full h-60 object-contain rounded-md mx-auto" src="./src/assets/img/"
+          alt="Image du Pokémon" />
+      </div>
+      <div class="card-content">
+        <p slot="pokemon-number" class="pokemon-number text-sm font-medium text-gray-600">#NUMERO</p>
+        <p slot="pokemon-name" class="pokemon-name text-xl font-semibold text-gray-800">NOM_DU_POKEMON</p>
+        <div class="pokemon-types flex justify-center gap-2 mt-2">
+          <!-- Les types seront ajoutés ici dynamiquement -->
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+</body>
+
+
 
 
 </html>
