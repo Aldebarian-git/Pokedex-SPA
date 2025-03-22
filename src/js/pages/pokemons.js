@@ -52,8 +52,7 @@ const pokemons = {
     loadMore.textContent = "Voir plus de Pokémon";
     document.getElementById("pokemon-list").append(loadMore);
 
-    document.getElementById("load-more").addEventListener("click", () => {
-      console.log("click");
+    document.getElementById("load-more").addEventListener("click", () => {      
       const hiddenPokemons = document.querySelectorAll(
         ".card-container:nth-child(n+7):not(.show)"
       );
