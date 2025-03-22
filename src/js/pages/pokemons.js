@@ -40,21 +40,23 @@ const pokemons = {
     const loadMore = document.createElement("button");
     loadMore.id = "load-more";
     loadMore.classList.add(
-      "bg-blue-500",
-      "hover:bg-blue-700",
-      "text-white",
-      "font-bold",
+      "bg-red-600",
+      "border-2",
+      "border-black",
+      "text-white",      
       "py-2",
       "px-4",
-      "rounded",
+      "rounded-lg",
+      "hover:bg-red-700",      
+      "cursor-pointer",
       "mt-4"
     );
     loadMore.textContent = "Voir plus de Pokémon";
-    document.getElementById("pokemon-list").append(loadMore);
+    document.getElementById("pokemon-list").append(loadMore);  
 
     document.getElementById("load-more").addEventListener("click", () => {      
       const hiddenPokemons = document.querySelectorAll(
-        ".card-container:nth-child(n+7):not(.show)"
+        ".card-container:nth-child(n+10):not(.show)"
       );
       
       const nextBatch = Array.from(hiddenPokemons).slice(0, 6);
@@ -65,6 +67,8 @@ const pokemons = {
         document.getElementById("load-more").style.display = "none";
       }
     });
+
+    
   },
 
   HoldaddPokemonsToDOM(pokemon) {

@@ -151,7 +151,7 @@ input:hover {
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-#pokemon-list:nth-child(n+7) {
+#pokemon-list:nth-child(n+10) {
   display: none;
 }
 
