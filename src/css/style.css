@@ -109,7 +109,47 @@ input:hover {
 
 .iziToast-close button{
   color: #fff;
-} 
+}
+
+
+.card-container:after {
+  content: "";
+  position: absolute;
+  top: -12%;
+  left: -60%;
+  width: 30%;
+  height: 130%;
+  opacity: 0;
+  transform: rotate(30deg);
+  background: rgba(255, 255, 255, 0.13);
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.13) 0%,
+    rgba(255, 255, 255, 0.13) 77%,
+    rgba(255, 255, 255, 0.5) 92%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* Hover state - trigger effect */
+.card-container:hover:after {
+  opacity: 1;
+  left: 144%;
+  transition-property: left, top, opacity;
+  transition-duration: 0.7s, 0.7s, 0.15s;
+  transition-timing-function: ease;
+}
+
+/* Active state */
+.card-container:active:after {
+  opacity: 0;
+}
+
+.card-container:hover {
+  background-color: #e0e0e0;
+  transform: rotate(1deg) scale(1.02);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
 
 
 

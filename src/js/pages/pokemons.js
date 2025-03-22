@@ -145,7 +145,7 @@ const pokemons = {
       } else if (pokemon.isLiked === false) {
         newIcon.classList.add("fa-solid");
         newIcon.classList.add("fa-heart");
-        newIcon.classList.add("text-white");
+        newIcon.classList.add("text-gray-500");
         likeBtn.appendChild(newIcon);
       }
 
@@ -202,11 +202,11 @@ const pokemons = {
     if (icon.classList.contains("text-red-500")) {
       await api.togglePokemonLike(pokemonId);            
       icon.classList.remove("text-red-500");
-      icon.classList.add("text-white");
+      icon.classList.add("text-gray-500");
       toast.error("Pokémon unliké");
     } else {
       await api.togglePokemonLike(pokemonId);
-      icon.classList.remove("text-white");
+      icon.classList.remove("text-gray-500");
       icon.classList.add("text-red-500");
       toast.success("Pokémon liké");
     }
