@@ -14,7 +14,8 @@ const searchContainer = {
 
     bindEvents(){
         document.getElementById("reset-select").addEventListener("click", () => {
-            document.getElementById("search-type").selectedIndex = 0;            
+            document.getElementById("search-type").selectedIndex = 0; 
+            document.getElementById("reset-select").classList.add("hidden");
             pokemons.init();
         });
     },
