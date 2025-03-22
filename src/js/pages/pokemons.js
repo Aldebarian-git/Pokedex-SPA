@@ -23,11 +23,11 @@ const pokemons = {
     const pokemons = await api.getPokemons();
     pokemons.forEach((pokemon) => {
       // this.addPokemonsToDOM(pokemon);
-      this.newAddPokemonsToDOM(pokemon);
+      this.addPokemonsToDOM(pokemon);
     });
   },
 
-  addPokemonsToDOM(pokemon) {
+  HoldaddPokemonsToDOM(pokemon) {
     const template = document.getElementById("pokemon-template");
     const clone = template.content.cloneNode(true);
     clone.querySelector(".card").classList.add("cursor-pointer");
@@ -78,7 +78,7 @@ const pokemons = {
     document.getElementById("pokemon-list").append(clone);
   },
 
-  newAddPokemonsToDOM(pokemon) {
+  addPokemonsToDOM(pokemon) {
     const backgroundCardImg =["/img/bg-card-1.jpg", "/img/bg-card-2.jpg", "/img/bg-card-3.jpg", "/img/bg-card-4.jpg", "/img/bg-card-5.jpg", "/img/bg-card-6.jpg", "/img/bg-card-7.jpg"];
     const randomBackgroundCardImg = backgroundCardImg[Math.floor(Math.random() * backgroundCardImg.length)];
     const template = document.getElementById("pokemon-card-template");
