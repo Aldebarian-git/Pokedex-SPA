@@ -103,6 +103,16 @@ const teams = {
   addTeamToDOM(team) {
     const template = document.getElementById("team-template");
     const clone = template.content.cloneNode(true);
+
+    // Ajout d'un événement pour modifier la couleur de la led en fonction du nombre de Pokémon dans l'équipe
+    const ledBox = clone.querySelector(".led-box");
+    if(team.pokemons.length === 6){
+      ledBox.querySelector(".led-green").classList.remove("hidden");
+    }else{      
+      ledBox.querySelector(".led-yellow").classList.remove("hidden");
+    }
+    
+    // Ajout d'un événement pour modifier le nom et la description de l'équipe
     clone.querySelector('[slot="team-name"]').textContent = team.name;
     clone.querySelector('[slot="team-name"]').dataset.teamName = team.name;
     clone.querySelector('[slot="team-description"]').textContent =

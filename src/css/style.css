@@ -1,20 +1,18 @@
 @import "tailwindcss";
 
-
 @font-face {
-  font-family: "Pokemon"; 
-  src: url("/font/Pokemon\ Solid.ttf") format("truetype"); 
+  font-family: "Pokemon";
+  src: url("/font/Pokemon\ Solid.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @theme {
-  --font-pokemon: "Pokemon";  
+  --font-pokemon: "Pokemon";
 }
 
-
 .modal {
-  display: none; 
+  display: none;
 }
 
 #type-list.hidden {
@@ -23,7 +21,7 @@
 
 .modal.is-active {
   display: block;
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw; /* Largeur totale de l'écran */
@@ -55,10 +53,8 @@ body {
 }
 
 #app {
-  
   min-height: 60vh;
 }
-
 
 .progress {
   @apply w-full h-4 rounded-lg;
@@ -74,7 +70,7 @@ body {
 
 /* Firefox */
 .progress::-moz-progress-bar {
-    @apply bg-red-600 rounded-lg;
+  @apply bg-red-600 rounded-lg;
 }
 
 #nav-item-team.hidden {
@@ -86,49 +82,48 @@ select {
   -webkit-appearance: none;
   -moz-appearance: none;
   border: 2px solid black;
-  background-color: white;  
+  background-color: white;
   border-radius: 5px;
   padding: 8px 12px;
   font-size: 16px;
   cursor: pointer;
   outline: none;
-  
 }
 
 /* Effet au survol */
 select:hover {
-  border-color: #FBBF24;
+  border-color: #fbbf24;
 }
 
 input:hover {
-  border-color: #FBBF24;
+  border-color: #fbbf24;
 }
 
 .iziToast {
   border: 2px solid;
   border-radius: 8px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-  min-width: min-content;   
+  min-width: min-content;
 }
 
 .iziToast-message {
   font-family: "Pokemon";
-  white-space: nowrap; 
+  white-space: nowrap;
   letter-spacing: 0.1em;
-  
 }
 
 .iziToast-cover {
   object-fit: cover;
 }
 
-.iziToast-close button{
+.iziToast-close button {
   color: #fff;
 }
 
 .card-container {
   user-select: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
   background-color: transparent;
   transform: rotate(0deg) scale(1);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -158,7 +153,7 @@ input:hover {
     rgba(255, 255, 255, 0) 100%
   );
   transition-property: left, top, opacity;
-    transition-duration: 0.4s, 0.4s, 0.15s;
+  transition-duration: 0.4s, 0.4s, 0.15s;
   transition-timing-function: ease;
   z-index: 100;
 }
@@ -179,61 +174,65 @@ input:hover {
   z-index: 100;
 }
 
-
-
 /* CARD */
 /* Fade In depuis la gauche */
 @keyframes fadeInLeft {
   from {
-      opacity: 0;
-      transform: translateX(-20px);
+    opacity: 0;
+    transform: translateX(-20px);
   }
   to {
-      opacity: 1;
-      transform: translateX(0);
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
 /* Animation avec rebond */
 @keyframes bounceIn {
   0% {
-      opacity: 0;
-      transform: scale(0.3) rotate(0deg);
+    opacity: 0;
+    transform: scale(0.3) rotate(0deg);
   }
   50% {
-      opacity: 0.9;
-      transform: scale(1.1) rotate(0deg);
+    opacity: 0.9;
+    transform: scale(1.1) rotate(0deg);
   }
   80% {
-      opacity: 1;
-      transform: scale(0.9) rotate(0deg);
+    opacity: 1;
+    transform: scale(0.9) rotate(0deg);
   }
   100% {
-      opacity: 1;
-      transform: scale(1) rotate(0deg);
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
   }
 }
 
 #pokemon-list .card-container {
   opacity: 0;
   animation: bounceIn 0.5s ease-out forwards;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease;
 }
 
-
-
 /* Pour créer l'effet cascade */
-#pokemon-list .card-container:nth-child(6n + 1) { animation-delay: 0.1s; }
-#pokemon-list .card-container:nth-child(6n + 2) { animation-delay: 0.2s; }
-#pokemon-list .card-container:nth-child(6n + 3) { animation-delay: 0.3s; }
-#pokemon-list .card-container:nth-child(6n + 4) { animation-delay: 0.4s; }
-#pokemon-list .card-container:nth-child(6n + 5) { animation-delay: 0.5s; }
-#pokemon-list .card-container:nth-child(6n + 6) { animation-delay: 0.6s; }
-
-
-
-
-
+#pokemon-list .card-container:nth-child(6n + 1) {
+  animation-delay: 0.1s;
+}
+#pokemon-list .card-container:nth-child(6n + 2) {
+  animation-delay: 0.2s;
+}
+#pokemon-list .card-container:nth-child(6n + 3) {
+  animation-delay: 0.3s;
+}
+#pokemon-list .card-container:nth-child(6n + 4) {
+  animation-delay: 0.4s;
+}
+#pokemon-list .card-container:nth-child(6n + 5) {
+  animation-delay: 0.5s;
+}
+#pokemon-list .card-container:nth-child(6n + 6) {
+  animation-delay: 0.6s;
+}
 
 /* BATTERY */
 .battery {
@@ -247,7 +246,7 @@ input:hover {
 }
 
 .battery:before {
-  content: "";  
+  content: "";
   height: 2px;
   width: 10px;
   background: #333;
@@ -282,22 +281,18 @@ input:hover {
 
 .led-box {
   height: 24px;
-  width: 24px;  
+  width: 24px;
 }
 
-.led-box p {
-  font-size: 12px;
-  text-align: center;
-  margin: 1em;
-}
 
 .led-red {
   margin: 0 auto;
   width: 24px;
   height: 24px;
-  background-color: #F00;
+  background-color: #f00;
   border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px,
+    rgba(255, 0, 0, 0.5) 0 2px 12px;
   -webkit-animation: blinkRed 0.5s infinite;
   -moz-animation: blinkRed 0.5s infinite;
   -ms-animation: blinkRed 0.5s infinite;
@@ -306,45 +301,159 @@ input:hover {
 }
 
 @-webkit-keyframes blinkRed {
-  from { background-color: #F00; }
-  50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
-  to { background-color: #F00; }
+  from {
+    background-color: #f00;
+  }
+  50% {
+    background-color: #a00;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px,
+      rgba(255, 0, 0, 0.5) 0 2px 0;
+  }
+  to {
+    background-color: #f00;
+  }
 }
 @-moz-keyframes blinkRed {
-  from { background-color: #F00; }
-  50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
-  to { background-color: #F00; }
+  from {
+    background-color: #f00;
+  }
+  50% {
+    background-color: #a00;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px,
+      rgba(255, 0, 0, 0.5) 0 2px 0;
+  }
+  to {
+    background-color: #f00;
+  }
 }
 @-ms-keyframes blinkRed {
-  from { background-color: #F00; }
-  50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
-  to { background-color: #F00; }
+  from {
+    background-color: #f00;
+  }
+  50% {
+    background-color: #a00;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px,
+      rgba(255, 0, 0, 0.5) 0 2px 0;
+  }
+  to {
+    background-color: #f00;
+  }
 }
 @-o-keyframes blinkRed {
-  from { background-color: #F00; }
-  50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
-  to { background-color: #F00; }
+  from {
+    background-color: #f00;
+  }
+  50% {
+    background-color: #a00;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px,
+      rgba(255, 0, 0, 0.5) 0 2px 0;
+  }
+  to {
+    background-color: #f00;
+  }
 }
 @keyframes blinkRed {
-  from { background-color: #F00; }
-  50% { background-color: #A00; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;}
-  to { background-color: #F00; }
+  from {
+    background-color: #f00;
+  }
+  50% {
+    background-color: #a00;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px,
+      rgba(255, 0, 0, 0.5) 0 2px 0;
+  }
+  to {
+    background-color: #f00;
+  }
+}
+
+.led-yellow {
+  margin: 0 auto;
+  width: 23px;
+  height: 23px;
+  background-color: #ff0;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0px 7px 1px, inset #808002 0 -1px 9px,
+    #ff0 0 2px 12px;
+  -webkit-animation: blinkYellow 1s infinite;
+  -moz-animation: blinkYellow 1s infinite;
+  -ms-animation: blinkYellow 1s infinite;
+  -o-animation: blinkYellow 1s infinite;
+  animation: blinkYellow 1s infinite;
+}
+
+@-webkit-keyframes blinkYellow {
+  from {
+    background-color: #ff0;
+  }
+  50% {
+    background-color: #aa0;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px,
+      rgba(255, 255, 0, 0.5) 0 2px 0;
+  }
+  to {
+    background-color: #ff0;
+  }
+}
+@-moz-keyframes blinkYellow {
+  from {
+    background-color: #ff0;
+  }
+  50% {
+    background-color: #aa0;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px,
+      rgba(255, 255, 0, 0.5) 0 2px 0;
+  }
+  to {
+    background-color: #ff0;
+  }
+}
+@-ms-keyframes blinkYellow {
+  from {
+    background-color: #ff0;
+  }
+  50% {
+    background-color: #aa0;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px,
+      rgba(255, 255, 0, 0.5) 0 2px 0;
+  }
+  to {
+    background-color: #ff0;
+  }
+}
+@-o-keyframes blinkYellow {
+  from {
+    background-color: #ff0;
+  }
+  50% {
+    background-color: #aa0;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px,
+      rgba(255, 255, 0, 0.5) 0 2px 0;
+  }
+  to {
+    background-color: #ff0;
+  }
+}
+@keyframes blinkYellow {
+  from {
+    background-color: #ff0;
+  }
+  50% {
+    background-color: #aa0;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px,
+      rgba(255, 255, 0, 0.5) 0 2px 0;
+  }
+  to {
+    background-color: #ff0;
+  }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.led-green {
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: #ABFF00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #89FF00 0 2px 12px;
+}
 
