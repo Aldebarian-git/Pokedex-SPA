@@ -190,6 +190,7 @@ const teams = {
             typeClone.querySelector(
               ".type-name"
             ).style.backgroundColor = `#${type.color}`;
+            typeClone.querySelector(".type-name").classList.add("text-white");
             pokemonClone.querySelector(".pokemon-types").appendChild(typeClone);
           });
         }        

@@ -134,12 +134,21 @@
         <img src="/img/pokeball.png" alt="une Pokeball"
           class="w-20 h-20 hidden sm:block absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
 
-        <header class="modal-card-head flex items-center justify-between">
+          <div class="led-box absolute top-3 right-3">
+            <div class="led-red"></div>              
+          </div>
+
+        <header class="modal-card-head flex items-center justify-between mt-4">
+
+          
+          
           <div class="flex flex-row justify-center items-center text-center">
             <h2 slot="pokemon-name-modal" class=" pkm_name text-2xl font-bold text-white mt-1">NOM_DU_POKEMON</h2>
             <p slot="pokemon-number-modal" class="pkm_number text-xl text-white">NUMERO</p>
           </div>
           <div class="flex flex-row justify-center items-center text-center gap-2">
+
+           
 
             <div class="battery">
               <div class="battery-level" style="height:75%;"></div>
