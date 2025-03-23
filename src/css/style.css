@@ -73,6 +73,19 @@ body {
   @apply bg-red-600 rounded-lg;
 }
 
+@keyframes progressAnimation {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.progress.active {
+  animation: progressAnimation 1s ease-in-out forwards;
+}
+
 #nav-item-team.hidden {
   display: none;
 }
@@ -450,10 +463,83 @@ input:hover {
 
 .led-green {
   margin: 0 auto;
-  width: 24px;
-  height: 24px;
-  background-color: #ABFF00;
+  width: 23px;
+  height: 23px;
+  background-color: #0f0;
   border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #89FF00 0 2px 12px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 0px 7px 1px, inset #028002 0 -1px 9px,
+    #0f0 0 2px 12px;
+  -webkit-animation: blinkGreen 1s infinite;
+  -moz-animation: blinkGreen 1s infinite;
+  -ms-animation: blinkGreen 1s infinite;
+  -o-animation: blinkGreen 1s infinite;
+  animation: blinkGreen 1s infinite;
+}
+
+
+@-webkit-keyframes blinkGreen {
+  from {
+    background-color: #0f0;
+  }
+  50% {
+    background-color: #0a0;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #024402 0 -1px 9px,
+      rgba(0, 255, 0, 0.5) 0 2px 0;
+  }
+  to {
+    background-color: #0f0;
+  }
+}
+@-moz-keyframes blinkGreen {
+  from {
+    background-color: #0f0;
+  }
+  50% {
+    background-color: #0a0;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #024402 0 -1px 9px,
+      rgba(0, 255, 0, 0.5) 0 2px 0;
+  }
+  to {
+    background-color: #0f0;
+  }
+}
+@-ms-keyframes blinkGreen {
+  from {
+    background-color: #0f0;
+  }
+  50% {
+    background-color: #0a0;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #024402 0 -1px 9px,
+      rgba(0, 255, 0, 0.5) 0 2px 0;
+  }
+  to {
+    background-color: #0f0;
+  }
+}
+@-o-keyframes blinkGreen {
+  from {
+    background-color: #0f0;
+  }
+  50% {
+    background-color: #0a0;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #024402 0 -1px 9px,
+      rgba(0, 255, 0, 0.5) 0 2px 0;
+  }
+  to {
+    background-color: #0f0;
+  }
+}
+@keyframes blinkGreen {
+  from {
+    background-color: #0f0;
+  }
+  50% {
+    background-color: #0a0;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #024402 0 -1px 9px,
+      rgba(0, 255, 0, 0.5) 0 2px 0;
+  }
+  to {
+    background-color: #0f0;
+  }
 }
 

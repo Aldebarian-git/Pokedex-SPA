@@ -242,9 +242,24 @@ const teams = {
 
   async deletePokemonFromTeam(team, pokemon) {
     const response = await api.deletePokemonFromTeam(team, pokemon);
+    
     if (response) {
+      // supprimer le Pokémon de l'équipe dans le DOM
       const teamCard = document.querySelector(`[data-id="${pokemon}"][data-team-id="${team}"]`);
       teamCard.remove();
+
+      // actualiser la couleur de la led en fonction du nombre de Pokémon dans l'équipe
+      const teamPokemons = document.querySelector(`[data-team-id="${team}"]`);
+      const teamPokemonsLength = teamPokemons.querySelectorAll(".card").length;
+      
+      if(teamPokemonsLength === 6){
+        teamPokemons.querySelector(".led-green").classList.remove("hidden");
+        teamPokemons.querySelector(".led-yellow").classList.add("hidden");
+      }else{
+        teamPokemons.querySelector(".led-yellow").classList.remove("hidden");
+        teamPokemons.querySelector(".led-green").classList.add("hidden");
+      }      
+
     } else {
       console.error("Erreur lors de la suppression du Pokémon");
     }

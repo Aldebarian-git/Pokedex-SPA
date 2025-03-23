@@ -30,6 +30,10 @@ const modal = {
     document.querySelector(selector).classList.add("is-active");
     const body = document.body;
     body.classList.add("body-no-scroll");
+    document.querySelectorAll(".progress").forEach((progress) => {
+      progress.classList.add("active");
+    });
+    
   },
 
   close() {
@@ -44,6 +48,9 @@ const modal = {
     }
     const body = document.body;
     body.classList.remove("body-no-scroll");
+    document.querySelectorAll(".progress").forEach((progress) => {
+      progress.classList.remove("active");
+    });
   },
 
   async editModal(selector, pokemon) {
