@@ -24,6 +24,7 @@ const searchContainer = {
     document.querySelector(".random-pokemon").addEventListener("click", () => {
       navigation.hideAllLists();
       document.getElementById("pokemon-list").classList.remove("hidden");
+      this.loadRandomPokemons();
     });
   },
 
