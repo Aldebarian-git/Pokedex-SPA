@@ -169,14 +169,14 @@ const searchContainer = {
     }
 
     btnLoadMore.classList.add("hidden");
-    btnLoadLess.classList.add("hidden");
+    
+
     const newbutton = document.createElement("button");
     newbutton.classList.add(
       "font-pokemon",
       "text-xl",
       "text-white",
       "cursor-pointer",      
-      "hover:text-red-600",
       "tracking-widest",
       "transition-all",
       "duration-300",
@@ -188,8 +188,7 @@ const searchContainer = {
     document.querySelector("#pokemon-list").appendChild(newbutton);
 
     newbutton.addEventListener("click", () => {
-      btnLoadMore.classList.remove("hidden");
-      btnLoadLess.classList.remove("hidden");
+      btnLoadMore.classList.remove("hidden");      
       const pokemons = document.querySelectorAll(".card-container");
       pokemons.forEach((pokemon, index) => {
         for (let i = 0; i < 6; i++) {

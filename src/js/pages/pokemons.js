@@ -21,8 +21,7 @@ const pokemons = {
       document.getElementById("pokemon-list").classList.remove("hidden");
     }
     const pokemons = await api.getPokemons();
-    pokemons.forEach((pokemon) => {
-      // this.addPokemonsToDOM(pokemon);
+    pokemons.forEach((pokemon) => {      
       this.addPokemonsToDOM(pokemon);
     });
 
@@ -53,8 +52,7 @@ const pokemons = {
       "font-pokemon",
       "text-xl",
       "text-white",
-      "cursor-pointer",      
-      "hover:text-red-600",
+      "cursor-pointer",       
       "tracking-widest",
       "transition-all",
       "duration-300",
@@ -65,34 +63,33 @@ const pokemons = {
     loadMore.textContent = "Voir les pokémons suivants !";
     document.getElementById("pokemon-list").append(loadMore); 
     
-    const loadLess = document.createElement("button");
-    loadLess.id = "load-less";
-    loadLess.classList.add(
-      // "bg-red-600",
-      // "border-2",
-      // "border-black", 
-      // "text-white",
-      // "py-2",
-      // "px-4",
-      // "rounded-lg",
-      // "hover:bg-red-700",
-      // "cursor-pointer",
-      // "mt-4",
-      "font-pokemon",
-      "text-xl",
-      "text-white",
-      "cursor-pointer",      
-      "hover:text-red-600",
-      "tracking-widest",
-      "transition-all",
-      "duration-300",
-      "ease-in-out",
-      "hover:scale-102",
+    // const loadLess = document.createElement("button");
+    // loadLess.id = "load-less";
+    // loadLess.classList.add(
+    //   // "bg-red-600",
+    //   // "border-2",
+    //   // "border-black", 
+    //   // "text-white",
+    //   // "py-2",
+    //   // "px-4",
+    //   // "rounded-lg",
+    //   // "hover:bg-red-700",
+    //   // "cursor-pointer",
+    //   // "mt-4",
+    //   "font-pokemon",
+    //   "text-xl",
+    //   "text-white",
+    //   "cursor-pointer",            
+    //   "tracking-widest",
+    //   "transition-all",
+    //   "duration-300",
+    //   "ease-in-out",
+    //   "hover:scale-102",
       
       
-    );
-    loadLess.textContent = "Annuler";
-    document.getElementById("pokemon-list").append(loadLess);
+    // );
+    // loadLess.textContent = "Annuler";
+    // document.getElementById("pokemon-list").append(loadLess);
 
     document.getElementById("load-more").addEventListener("click", () => {      
       const hiddenPokemons = document.querySelectorAll(".card-container.hidden");
@@ -106,17 +103,17 @@ const pokemons = {
       }
     });
 
-    document.getElementById("load-less").addEventListener("click", () => {
-      const allPokemons = document.querySelectorAll(".card-container");
+    // document.getElementById("load-less").addEventListener("click", () => {
+    //   const allPokemons = document.querySelectorAll(".card-container");
     
-      // Cacher tous les Pokémon
-      allPokemons.forEach((pokemon) => pokemon.classList.add("hidden"));
+    //   // Cacher tous les Pokémon
+    //   allPokemons.forEach((pokemon) => pokemon.classList.add("hidden"));
     
-      // Rendre visibles seulement les 6 premiers
-      Array.from(allPokemons)
-        .slice(0, 6)
-        .forEach((pokemon) => pokemon.classList.remove("hidden"));
-    });
+    //   // Rendre visibles seulement les 6 premiers
+    //   Array.from(allPokemons)
+    //     .slice(0, 6)
+    //     .forEach((pokemon) => pokemon.classList.remove("hidden"));
+    // });
 
     
 

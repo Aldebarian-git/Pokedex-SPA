@@ -40,15 +40,13 @@ const navigations = {
 
   hideAllLists() {
     // On cache toutes les listes
+    
     document.getElementById("pokemon-list").classList.add("hidden");
     document.getElementById("type-list").classList.add("hidden");
     document.getElementById("team-list").classList.add("hidden");
     if (document.querySelector(".no-pokemon-found")) {
       document.querySelector(".no-pokemon-found").remove();
-    }
-    if (document.querySelector(".btn-return")) {
-      document.querySelector(".btn-return").remove();
-    }
+    }   
   },
 
   navigateTo(page) {
@@ -62,6 +60,7 @@ const navigations = {
         document.getElementById("pokemon-list").classList.remove("hidden");
         document.getElementById("pokemon-list").innerHTML = "";
         document.getElementById("search-type").selectedIndex = 0;
+        
         pokemons.init();
         
         break;

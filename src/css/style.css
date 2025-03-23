@@ -53,7 +53,7 @@ body {
 }
 
 #app {
-  min-height: 60vh;
+  min-height: 85vh;
 }
 
 .progress {
@@ -543,9 +543,15 @@ input:hover {
   }
 }
 
-.btn-add-team, #load-more {
+.btn-add-team, #load-more, .btn-return {
   animation: shake 2s infinite;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 1);
 }
+
+#load-less {  
+  text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}
+
 
 @keyframes shake {
   0% { transform: scale(1); }
@@ -553,6 +559,11 @@ input:hover {
   50% { transform: scale(0.98); }
   75% { transform: scale(1.02); }
   100% { transform: scale(1); }
+}
+
+.btn-card-details {
+  animation: shake 2s infinite;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 1);
 }
 
 
