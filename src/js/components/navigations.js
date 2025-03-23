@@ -46,6 +46,9 @@ const navigations = {
     if (document.querySelector(".no-pokemon-found")) {
       document.querySelector(".no-pokemon-found").remove();
     }
+    if (document.querySelector(".btn-return")) {
+      document.querySelector(".btn-return").remove();
+    }
   },
 
   navigateTo(page) {
