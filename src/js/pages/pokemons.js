@@ -40,35 +40,58 @@ const pokemons = {
     const loadMore = document.createElement("button");
     loadMore.id = "load-more";
     loadMore.classList.add(
-      "bg-red-600",
-      "border-2",
-      "border-black",
-      "text-white",      
-      "py-2",
-      "px-4",
-      "rounded-lg",
-      "hover:bg-red-700",      
-      "cursor-pointer",
-      "mt-4",                  
+      // "bg-red-600",
+      // "border-2",
+      // "border-black",
+      // "text-white",      
+      // "py-2",
+      // "px-4",
+      // "rounded-lg",
+      // "hover:bg-red-700",      
+      // "cursor-pointer",
+      // "mt-4",
+      "font-pokemon",
+      "text-xl",
+      "text-white",
+      "cursor-pointer",      
+      "hover:text-red-600",
+      "tracking-widest",
+      "transition-all",
+      "duration-300",
+      "ease-in-out",
+      "hover:scale-102",      
+      
     );
-    loadMore.textContent = "Voir les pokémons suivants";
+    loadMore.textContent = "Voir les pokémons suivants !";
     document.getElementById("pokemon-list").append(loadMore); 
     
     const loadLess = document.createElement("button");
     loadLess.id = "load-less";
     loadLess.classList.add(
-      "bg-red-600",
-      "border-2",
-      "border-black", 
+      // "bg-red-600",
+      // "border-2",
+      // "border-black", 
+      // "text-white",
+      // "py-2",
+      // "px-4",
+      // "rounded-lg",
+      // "hover:bg-red-700",
+      // "cursor-pointer",
+      // "mt-4",
+      "font-pokemon",
+      "text-xl",
       "text-white",
-      "py-2",
-      "px-4",
-      "rounded-lg",
-      "hover:bg-red-700",
-      "cursor-pointer",
-      "mt-4",                 
+      "cursor-pointer",      
+      "hover:text-red-600",
+      "tracking-widest",
+      "transition-all",
+      "duration-300",
+      "ease-in-out",
+      "hover:scale-102",
+      
+      
     );
-    loadLess.textContent = "Voir moins";
+    loadLess.textContent = "Annuler";
     document.getElementById("pokemon-list").append(loadLess);
 
     document.getElementById("load-more").addEventListener("click", () => {      

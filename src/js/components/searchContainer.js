@@ -172,21 +172,19 @@ const searchContainer = {
     btnLoadLess.classList.add("hidden");
     const newbutton = document.createElement("button");
     newbutton.classList.add(
-      "bg-red-600",
+      "font-pokemon",
+      "text-xl",
       "text-white",
-      "px-4",
-      "py-2",
-      "rounded-md",
-      "border-2",
-      "border-black",
-      "shadow-md",
-      "hover:bg-red-800",
+      "cursor-pointer",      
+      "hover:text-red-600",
+      "tracking-widest",
       "transition-all",
       "duration-300",
-      "cursor-pointer",
+      "ease-in-out",
+      "hover:scale-102",
       "btn-return"
     );
-    newbutton.textContent = "Retour";
+    newbutton.textContent = "Retour !";
     document.querySelector("#pokemon-list").appendChild(newbutton);
 
     newbutton.addEventListener("click", () => {
