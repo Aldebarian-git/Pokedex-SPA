@@ -543,9 +543,13 @@ input:hover {
   }
 }
 
-.btn-add-team, #load-more, .btn-return {
+.btn-add-team, #load-more, .btn-return, .btn_add_team {
   animation: shake 2s infinite;
   text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}
+
+.pkm_name {
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 #load-less {  
